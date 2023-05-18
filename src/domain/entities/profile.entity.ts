@@ -9,13 +9,13 @@ export class Profile {
 
   email: string
 
-  civil_status: CivilStatusEnum
+  civilStatus: CivilStatusEnum
 
   cpf: string
 
   rg: string
 
-  birthdate: Date
+  birthDate: Date
 
   gender: GenderEnum
 

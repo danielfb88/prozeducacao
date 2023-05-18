@@ -14,7 +14,7 @@ export class Profile {
   email: string
 
   @Column({ type: 'enum', enum: CivilStatusEnum })
-  civil_status: CivilStatusEnum
+  civilStatus: CivilStatusEnum
 
   @Column()
   cpf: string
@@ -23,7 +23,7 @@ export class Profile {
   rg: string
 
   @Column()
-  birthdate: Date
+  birthDate: Date
 
   @Column({ type: 'enum', enum: GenderEnum })
   gender: GenderEnum

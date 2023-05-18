@@ -7,7 +7,7 @@ export const getCreateProfileParamsDummy = (): ICreateProfileParams => ({
   cpf: 'any-cpf',
   rg: 'any-rg',
   email: 'any-email',
-  birthdate: new Date(),
+  birthDate: new Date(),
   gender: GenderEnum.FEMININO,
-  civil_status: CivilStatusEnum.CASADO
+  civilStatus: CivilStatusEnum.CASADO
 })

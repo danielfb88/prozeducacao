@@ -3,9 +3,9 @@ import { GenderEnum } from '@/shared/enum/gender.enum'
 export interface ICreateProfileParams {
   name: string
   email: string
-  civil_status: string
+  civilStatus: string
   cpf: string
   rg: string
-  birthdate: Date
+  birthDate: Date
   gender: GenderEnum
 }
