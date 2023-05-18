@@ -13,7 +13,7 @@ export class Profile {
   @Column({unique: true})
   email: string
 
-  @Column({ type: 'enum', enum: CivilStatusEnum })
+  @Column({ name: 'civil_status', type: 'enum', enum: CivilStatusEnum })
   civilStatus: CivilStatusEnum
 
   @Column()
@@ -22,18 +22,18 @@ export class Profile {
   @Column()
   rg: string
 
-  @Column()
+  @Column({ name: 'birth_date' })
   birthDate: Date
 
   @Column({ type: 'enum', enum: GenderEnum })
   gender: GenderEnum
 
-  @CreateDateColumn({ type: 'timestamptz' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt: Date
 
-  @UpdateDateColumn({ type: 'timestamptz' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
   updatedAt: Date
 
-  @DeleteDateColumn({ type: 'timestamptz' })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamptz' })
   deletedAt: Date
 }

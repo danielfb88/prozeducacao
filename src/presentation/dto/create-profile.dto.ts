@@ -1,6 +1,7 @@
-import { IsString, MaxLength, MinLength } from 'class-validator'
-import { Match } from '../decorators/match.decorator'
+import { IsEnum, IsString, MaxLength, MinLength } from 'class-validator'
 import { DateValidator } from '../decorators/date-validator.decorator'
+import { CivilStatusEnum } from '../../shared/enum/civil-status.enum'
+import { GenderEnum } from '../../shared/enum/gender.enum'
 
 export class CreateProfileDto {
   @IsString()
@@ -13,10 +14,8 @@ export class CreateProfileDto {
   @MaxLength(100)
   email: string
 
-  @IsString()
-  @MinLength(4)
-  @MaxLength(100)
-  civilStatus: string
+  @IsEnum(CivilStatusEnum)
+  civilStatus: CivilStatusEnum
 
   @IsString()
   @MinLength(4)
@@ -29,10 +28,8 @@ export class CreateProfileDto {
   rg: string
 
   @DateValidator()
-  birthdate: Date
+  birthDate: string
 
-  @IsString()
-  @MinLength(4)
-  @MaxLength(100)
-  gender: string
+  @IsEnum(GenderEnum)
+  gender: GenderEnum
 }

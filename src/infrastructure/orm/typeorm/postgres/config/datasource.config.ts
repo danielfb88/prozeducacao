@@ -1,3 +1,4 @@
+/* eslint-disable node/no-path-concat */
 import { DataSourceOptions } from 'typeorm'
 import path from 'path'
 import { DB_DATABASE, DB_HOST, DB_PORT, POSTGRES_USER, POSTGRES_PASSWORD, ORM_LOGGING } from '@/main/config'
@@ -20,6 +21,7 @@ export const dataSourceOptions: DataSourceOptions = {
   namingStrategy: new SnakeNamingStrategy(),
   migrationsTableName: 'migrations',
   // entities: [path.join(__dirname), '/../**/*.entity.js'], // TODO: check latter
-  entities: [path.join('dist/src/infrastructure/orm/typeorm/postgres/entities'), '/*.entity.js'],
+  // entities: [path.join('dist/src/infrastructure/orm/typeorm/postgres/entities'), '/*.entity.js'],
+  entities: [`${__dirname}/../**/*.entity.js`],
   migrations: ['dist/src/infrastructure/orm/typeorm/postgres/migrations/*.js']
 }

@@ -10,7 +10,7 @@ export class TypeOrmModule extends MainModule {
       dependency: MainModule.useValue(await getPostgresDataSource())
     })
     MainModule.addDependency({
-      token: InfrastructureProviderEnum.POSTGRES_PROFILE_REPOSITORY,
+      token: InfrastructureProviderEnum.PROFILE_REPOSITORY,
       dependency: MainModule.useFactory(
         ProfileRepository, [
           InfrastructureProviderEnum.POSTGRES_DATASOURCE
