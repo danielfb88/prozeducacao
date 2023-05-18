@@ -2,6 +2,7 @@ import { DataSourceOptions } from 'typeorm'
 import path from 'path'
 import { DB_DATABASE, DB_HOST, DB_PORT, POSTGRES_USER, POSTGRES_PASSWORD, ORM_LOGGING } from '@/main/config'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import { Profile } from '../entities/profile.entity'
 
 const synchronize = false
 const logging = Boolean(Number(ORM_LOGGING))
@@ -18,6 +19,7 @@ export const dataSourceOptions: DataSourceOptions = {
   logging,
   namingStrategy: new SnakeNamingStrategy(),
   migrationsTableName: 'migrations',
-  entities: [path.join(__dirname), '/../**/*.entity.js'],
+  // entities: [path.join(__dirname), '/../**/*.entity.js'], // TODO: check latter
+  entities: [path.join('dist/src/infrastructure/orm/typeorm/postgres/entities'), '/*.entity.js'],
   migrations: ['dist/src/infrastructure/orm/typeorm/postgres/migrations/*.js']
 }

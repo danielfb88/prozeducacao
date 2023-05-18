@@ -10,9 +10,6 @@ export const envSchema = {
   DB_DATABASE: Joi.string().required(),
   ORM_LOGGING: Joi.boolean().default(false),
 
-  GRPC_HOST: Joi.string().default('localhost'),
-  GRPC_PORT: Joi.number().default(50051),
-
   HTTP_PORT: Joi.number().default(8443),
 
   HTTPS_CERT_PATH: Joi.string().allow(null, ''),
