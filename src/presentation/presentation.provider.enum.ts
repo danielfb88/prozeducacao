@@ -1,0 +1,3 @@
+export enum PresentationProviderEnum {
+  HEALTH_CHECK_CONTROLLER = 'PRESENTATION_HEALTH_CHECK_CONTROLLER',
+}

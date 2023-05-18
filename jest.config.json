@@ -1,0 +1,53 @@
+{
+  "coveragePathIgnorePatterns": [
+    "main.ts",
+    "app.ts",
+    "module-alias.ts",
+    "base.handler.ts",
+    "constants.ts",
+    "index.ts",
+    "resources",
+    "grpc.service.ts",
+    "server.ts",
+    "http-helper.ts",
+    ".module.ts",
+    ".interface.ts",
+    ".dto.ts",
+    ".constants.ts",
+    ".entity.ts",
+    ".enum.ts",
+    ".repository.ts",
+    ".eslintrc.json",
+    ".provider.ts",
+    ".protocol.ts",
+    ".factory.ts",
+    ".formatter.ts",
+    ".decorator.ts",
+    ".schema.ts",
+    ".adapter.ts",
+    ".error.ts"
+  ],
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "./",
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^@/tests/(.*)": "<rootDir>/tests/$1",
+    "^@/(.*)": "<rootDir>/src/$1"
+  },
+  "modulePathIgnorePatterns": ["migrations", "config", "routes", "middlewares"],
+  "testPathIgnorePatterns": ["dist"],
+  "collectCoverageFrom": ["src/**/*.{ts,js}"],
+  "coverageDirectory": "coverage",
+  "testEnvironment": "node",
+  "coverageThreshold": {
+    "global": {
+      "branches": 80,
+      "lines": 80,
+      "functions": 80,
+      "statements": -10
+    }
+  }
+}
