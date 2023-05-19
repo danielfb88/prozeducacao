@@ -2,7 +2,7 @@ import { IUseCase } from '@/shared/interfaces'
 import { useCaseStub } from '@/tests/utils/stubs/use-case.stub'
 import { HealthCheckController } from './health-check.controller'
 
-describe('HealthGetByController', () => {
+describe('HealthCheckController', () => {
   let controller: HealthCheckController
   let useCase: IUseCase<any, any>
 

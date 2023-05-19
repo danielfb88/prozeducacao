@@ -2,7 +2,7 @@ import { HealthCheckController } from './controllers/health-check.controller'
 import { DomainProviderEnum } from '@/domain/domain.provider.enum'
 import { MainModule } from '@/main/main.module'
 import { PresentationProviderEnum } from './presentation.provider.enum'
-import { CreateProfileController } from './controllers/create-profile.controller'
+import { CreateProfileController } from './controllers/create-profile/create-profile.controller'
 
 export class PresentationModule extends MainModule {
   static configure (): void {

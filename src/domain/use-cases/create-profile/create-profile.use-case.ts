@@ -32,7 +32,7 @@ implements IUseCase<ICreateProfileParams, void> {
       this.loggerService.info(
         CREATE_PROFILE_USE_CASE_SAVED,
         CreateProfileUseCase.name,
-        data
+        saved
       )
       return saved
     } catch (error) {
