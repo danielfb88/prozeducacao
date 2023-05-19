@@ -1,10 +1,10 @@
-import { IHttpResponse } from '@/shared/interfaces/http-response.interface'
-import { ok, serverError } from '@/presentation/helpers'
-import { IUseCase, Mapper } from '@/shared/interfaces'
 import { RestInputValidator } from '@/presentation/decorators/rest-input-validator.decorator'
+import { IUseCase, Mapper } from '@/shared/interfaces'
+import { IHttpResponse } from '@/shared/interfaces/http-response.interface'
 import { CreateProfileDto } from '../../dto/create-profile.dto'
-import { CreateProfileMapper } from '../../mappers/create-profile.mapper'
+import { noContent, ok } from '../../helpers/http-helper'
 import { ICreateProfileResponse } from '../../interfaces/create-profile.response.interface'
+import { CreateProfileMapper } from '../../mappers/create-profile.mapper'
 
 export class CreateProfileController {
   constructor (
@@ -18,10 +18,10 @@ export class CreateProfileController {
       this.mapper.map(input)
     )
 
-    if (!response) {
-      serverError(new Error('Houve um problema ao salvar o perfil.'))
+    if (response) {
+      return ok(response)
     }
 
-    return ok(response)
+    return noContent()
   }
 }

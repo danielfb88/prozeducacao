@@ -1,9 +1,10 @@
 import { Profile } from '@/domain/entities/profile.entity'
-import { ICacheService } from '@/shared/interfaces/cache-service.interface'
 import { ICreateProfileParams } from '@/domain/interfaces/create-profile.params.interface'
-import { IProfileRepository } from '@/shared/interfaces/profile-repository.interface'
-import { ILoggerService } from '@/shared/interfaces/logger-service.interface'
 import { IUseCase } from '@/shared/interfaces'
+import { ICacheService } from '@/shared/interfaces/cache-service.interface'
+import { ILoggerService } from '@/shared/interfaces/logger-service.interface'
+import { IProfileRepository } from '@/shared/interfaces/profile-repository.interface'
+import { EmailInUseError } from '../../errors/email-in-use.error'
 
 export const CREATE_PROFILE_USE_CASE_RECEIVED =
   'domain.usecase.create-profile.received'
@@ -26,6 +27,11 @@ implements IUseCase<ICreateProfileParams, void> {
     )
 
     try {
+      const found = await this.repository.findByEmail(data.email)
+      if (found) {
+        throw new EmailInUseError(data.email)
+      }
+
       const saved = await this.repository.save(data)
       await this.cacheService.set(saved.id, JSON.stringify(saved))
 

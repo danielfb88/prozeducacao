@@ -1,6 +1,7 @@
 import { IHttpResponse } from '@/shared/interfaces/http-response.interface'
-import { ServerError, UnauthorizedError } from '@/presentation/errors'
 import { IValidationError } from '@/shared/interfaces/validation-error.interface'
+import { ServerError } from '../errors/server.error'
+import { UnauthorizedError } from '../errors/unauthorized.error'
 
 export const badRequest = (error: Error | IValidationError[]): IHttpResponse => ({
   statusCode: 400,
@@ -20,6 +21,11 @@ export const unauthorized = (): IHttpResponse => ({
 export const serverError = (error: Error): IHttpResponse => ({
   statusCode: 500,
   body: new ServerError(error.stack)
+})
+
+export const customServerError = (error: Error): IHttpResponse => ({
+  statusCode: 500,
+  body: error
 })
 
 export const ok = (data: any): IHttpResponse => ({

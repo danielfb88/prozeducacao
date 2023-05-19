@@ -24,6 +24,6 @@ export class ProfileRepository {
   }
 
   async findByEmail (email: string): Promise<Profile> {
-    return this.repository.findOneBy({ id: email })
+    return this.repository.findOneBy({ email })
   }
 }

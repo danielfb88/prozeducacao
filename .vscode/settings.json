@@ -3,7 +3,7 @@
   "editor.formatOnSave": false,
   "eslint.workingDirectories": ["./"],
   "editor.codeActionsOnSave": {
-    "source.organizeImports": false,
+    "source.organizeImports": true,
     "source.fixAll.format": true,
     "source.fixAll.eslint": true
   },

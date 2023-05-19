@@ -1,6 +1,6 @@
 import { IHttpResponse } from '@/shared/interfaces/http-response.interface'
-import { ok } from '@/presentation/helpers'
 import { IUseCase } from '@/shared/interfaces/use-case.interface'
+import { ok } from '../../helpers/http-helper'
 
 export class HealthCheckController {
   constructor (
