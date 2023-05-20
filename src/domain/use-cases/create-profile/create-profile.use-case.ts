@@ -33,7 +33,7 @@ implements IUseCase<ICreateProfileParams, void> {
       }
 
       const saved = await this.repository.save(data)
-      await this.cacheService.set(saved.id, JSON.stringify(saved))
+      await this.cacheService.set(saved.email, JSON.stringify(saved))
 
       this.loggerService.info(
         CREATE_PROFILE_USE_CASE_SAVED,

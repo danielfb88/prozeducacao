@@ -1,7 +1,6 @@
 import { DataSource, DeepPartial, Repository } from 'typeorm'
 import { Profile } from '../entities/profile.entity'
 
-// TODO implements IProfileRepository
 export class ProfileRepository {
   private readonly repository: Repository<Profile>
 
