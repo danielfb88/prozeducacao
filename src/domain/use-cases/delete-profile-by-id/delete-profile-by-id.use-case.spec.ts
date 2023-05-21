@@ -5,16 +5,16 @@ import { getProfileEntityDummy } from '@/tests/utils/dummies/profile.entity.dumm
 import { cacheServiceStub } from '@/tests/utils/stubs/cache-service.stub'
 import { loggerServiceStub } from '@/tests/utils/stubs/logger-service.stub'
 import { profileRepositoryStub } from '@/tests/utils/stubs/profile-repository.stub'
-import { GetProfileByEmailUseCase } from './get-by-email.use-case'
+import { DELETE_PROFILE_BY_ID_USE_CASE_DELETED, DeleteProfileByIdUseCase } from './delete-profile-by-id.use-case'
 
-describe('GetProfileByEmailUseCase', () => {
+describe('DeleteProfileByIdUseCase', () => {
   let useCase: IUseCase<any, any>
   let repository: IProfileRepository
   let logger: ILoggerService
   let cache: ICacheService
 
   const params = {
-    email: 'any-email'
+    id: 'any-id'
   }
 
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('GetProfileByEmailUseCase', () => {
     repository = profileRepositoryStub()
     logger = loggerServiceStub()
     cache = cacheServiceStub()
-    useCase = new GetProfileByEmailUseCase(logger, cache, repository)
+    useCase = new DeleteProfileByIdUseCase(logger, cache, repository)
   })
 
   it('should be definided', () => {
@@ -34,34 +34,22 @@ describe('GetProfileByEmailUseCase', () => {
     expect(useCase.execute).toBeDefined()
   })
 
-  it('should be able to call method findByEmail when method execute is executed', async () => {
+  it('should be able to call method delete when method execute is executed', async () => {
     const loggerSpyOn = jest.spyOn(logger, 'info')
-    jest.spyOn(cache, 'get').mockResolvedValue(undefined)
-    jest.spyOn(repository, 'findByEmail').mockResolvedValue(getProfileEntityDummy())
+    jest.spyOn(repository, 'findById').mockResolvedValue(getProfileEntityDummy())
 
     await useCase.execute(params)
 
-    expect(loggerSpyOn).toHaveBeenCalled()
+    expect(loggerSpyOn).toHaveBeenCalledWith(
+      DELETE_PROFILE_BY_ID_USE_CASE_DELETED,
+      DeleteProfileByIdUseCase.name,
+      params.id
+    )
   })
 
-  it('should be able to get object by cache when method execute is executed', async () => {
-    const profileDummy = getProfileEntityDummy()
-    const profileDummyCached = JSON.stringify(profileDummy)
-
+  it('should shows error log if profile not found', async () => {
     const loggerSpyOn = jest.spyOn(logger, 'info')
-    jest.spyOn(cache, 'get').mockResolvedValue(profileDummyCached)
-
-    await useCase.execute(params)
-
-    expect(loggerSpyOn).toHaveBeenCalled()
-  })
-
-  it('should be able to call method error from loggerService when method execute is executed with error', async () => {
-    jest.spyOn(cache, 'get').mockResolvedValue(undefined)
-
-    const error = new Error()
-    const loggerSpyOn = jest.spyOn(logger, 'error')
-    jest.spyOn(repository, 'findByEmail').mockRejectedValue(error)
+    jest.spyOn(repository, 'findById').mockResolvedValue(undefined)
 
     await useCase.execute(params)
 

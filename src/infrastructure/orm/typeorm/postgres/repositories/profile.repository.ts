@@ -25,4 +25,12 @@ export class ProfileRepository {
   async findByEmail (email: string): Promise<Profile> {
     return this.repository.findOneBy({ email })
   }
+
+  async delete (id: string): Promise<void> {
+    await this.repository.delete({ id })
+  }
+
+  async softDelete (id: string): Promise<void> {
+    await this.repository.softDelete({ id })
+  }
 }

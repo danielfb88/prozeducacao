@@ -2,6 +2,7 @@ import { InfrastructureProviderEnum } from '@/infrastructure/infrastructure.prov
 import { MainModule } from '@/main/main.module'
 import { DomainProviderEnum } from './domain.provider.enum'
 import { CreateProfileUseCase } from './use-cases/create-profile/create-profile.use-case'
+import { DeleteProfileByIdUseCase } from './use-cases/delete-profile-by-id/delete-profile-by-id.use-case'
 import { GetProfileByEmailUseCase } from './use-cases/get-profile-by-email/get-by-email.use-case'
 import { HealthCheckUseCase } from './use-cases/health-check/health-check.use-case'
 
@@ -36,6 +37,19 @@ export class DomainModule extends MainModule {
       token: DomainProviderEnum.GET_PROFILE_BY_EMAIL_USE_CASE,
       dependency: MainModule.useFactory(
         GetProfileByEmailUseCase,
+        [
+          InfrastructureProviderEnum.LOGGER_SERVICE,
+          InfrastructureProviderEnum.REDIS_SERVICE,
+          InfrastructureProviderEnum.PROFILE_REPOSITORY
+        ]
+      )
+    })
+
+    // DeleteProfileById
+    MainModule.addDependency({
+      token: DomainProviderEnum.DELETE_PROFILE_BY_ID_USE_CASE,
+      dependency: MainModule.useFactory(
+        DeleteProfileByIdUseCase,
         [
           InfrastructureProviderEnum.LOGGER_SERVICE,
           InfrastructureProviderEnum.REDIS_SERVICE,
