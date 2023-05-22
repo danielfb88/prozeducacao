@@ -14,6 +14,10 @@ export class ProfileRepository {
     return this.repository.save(entity)
   }
 
+  async update (entity: DeepPartial<Profile>): Promise<Profile> {
+    return this.repository.save(entity)
+  }
+
   async findAll (): Promise<Profile[]> {
     return this.repository.find()
   }

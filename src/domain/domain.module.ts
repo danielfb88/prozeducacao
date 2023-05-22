@@ -5,6 +5,7 @@ import { CreateProfileUseCase } from './use-cases/create-profile/create-profile.
 import { DeleteProfileByIdUseCase } from './use-cases/delete-profile-by-id/delete-profile-by-id.use-case'
 import { GetProfileByEmailUseCase } from './use-cases/get-profile-by-email/get-by-email.use-case'
 import { HealthCheckUseCase } from './use-cases/health-check/health-check.use-case'
+import { UpdateProfileUseCase } from './use-cases/update-profile/update-profile.use-case'
 
 export class DomainModule extends MainModule {
   static configure (): void {
@@ -50,6 +51,19 @@ export class DomainModule extends MainModule {
       token: DomainProviderEnum.DELETE_PROFILE_BY_ID_USE_CASE,
       dependency: MainModule.useFactory(
         DeleteProfileByIdUseCase,
+        [
+          InfrastructureProviderEnum.LOGGER_SERVICE,
+          InfrastructureProviderEnum.REDIS_SERVICE,
+          InfrastructureProviderEnum.PROFILE_REPOSITORY
+        ]
+      )
+    })
+
+    // UpdateProfile
+    MainModule.addDependency({
+      token: DomainProviderEnum.UPDATE_PROFILE_USE_CASE,
+      dependency: MainModule.useFactory(
+        UpdateProfileUseCase,
         [
           InfrastructureProviderEnum.LOGGER_SERVICE,
           InfrastructureProviderEnum.REDIS_SERVICE,

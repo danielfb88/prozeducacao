@@ -2,6 +2,7 @@ import { IProfileRepository } from 'src/shared/interfaces/profile-repository.int
 
 const stub = Object.freeze({
   save: jest.fn(),
+  update: jest.fn(),
   findAll: jest.fn(),
   findById: jest.fn(),
   findByEmail: jest.fn(),

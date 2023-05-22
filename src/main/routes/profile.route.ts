@@ -5,6 +5,7 @@ import { PresentationProviderEnum } from '@/presentation/presentation.provider.e
 import { Router } from 'express'
 import { DeleteProfileByIdController } from '../../presentation/controllers/delete-profile-by-id/delete-profile-by-id.controller'
 import { GetProfileByEmailController } from '../../presentation/controllers/get-profile-by-email/get-profile-by-email.controller'
+import { UpdateProfileController } from '../../presentation/controllers/update-profile/update-profile.controller'
 
 export default (router: Router): void => {
   const createProfileController = PresentationModule.get<CreateProfileController>(PresentationProviderEnum.CREATE_PROFILE_CONTROLLER)
@@ -15,4 +16,7 @@ export default (router: Router): void => {
 
   const deleteProfileByIdController = PresentationModule.get<DeleteProfileByIdController>(PresentationProviderEnum.DELETE_PROFILE_BY_ID_CONTROLLER)
   router.delete('/profile', adaptRoute(deleteProfileByIdController))
+
+  const updateProfileController = PresentationModule.get<UpdateProfileController>(PresentationProviderEnum.UPDATE_PROFILE_CONTROLLER)
+  router.put('/profile', adaptRoute(updateProfileController))
 }
