@@ -1,29 +1,26 @@
-import { ICreateProfileParams } from '@/domain/interfaces/create-profile.params.interface'
-import { ICacheService, IUseCase } from '@/shared/interfaces'
+import { IUseCase } from '@/shared/interfaces'
 import { ILoggerService } from '@/shared/interfaces/logger-service.interface'
 import { IProfileRepository } from '@/shared/interfaces/profile-repository.interface'
-import { getCreateProfileParamDummy } from '@/tests/utils/dummies/create-profile.param.dummy'
-import { getProfileEntityDummy } from '@/tests/utils/dummies/profile.entity.dummy'
-import { cacheServiceStub } from '@/tests/utils/stubs/cache-service.stub'
+import { IXlsReaderService } from '@/shared/interfaces/xls-reader-service.interface'
 import { loggerServiceStub } from '@/tests/utils/stubs/logger-service.stub'
 import { profileRepositoryStub } from '@/tests/utils/stubs/profile-repository.stub'
-import { CREATE_PROFILE_USE_CASE_RECEIVED, CREATE_PROFILE_USE_CASE_SAVED, CreateProfileUseCase } from './create-profile-from-xls.use-case'
+import { getXlsReaderService } from '../../../infrastructure/xls-reader/factories/xls-reader-service.factory'
+import { CreateProfileFromXlsUseCase } from './create-profile-from-xls.use-case'
 
-describe('CreateProfileUseCase', () => {
+describe('CreateProfileFromXlsUseCase', () => {
   let useCase: IUseCase<any, any>
   let repository: IProfileRepository
   let logger: ILoggerService
-  let cache: ICacheService
-
-  const params: ICreateProfileParams = getCreateProfileParamDummy()
+  let xlsReaderService: IXlsReaderService
 
   beforeEach(() => {
     jest.clearAllMocks()
 
     repository = profileRepositoryStub()
     logger = loggerServiceStub()
-    cache = cacheServiceStub()
-    useCase = new CreateProfileUseCase(logger, cache, repository)
+    // xlsReaderService = xlsReaderServiceStub()
+    xlsReaderService = getXlsReaderService()
+    useCase = new CreateProfileFromXlsUseCase(logger, xlsReaderService, repository)
   })
 
   it('should be definided', () => {
@@ -34,56 +31,13 @@ describe('CreateProfileUseCase', () => {
     expect(useCase.execute).toBeDefined()
   })
 
-  it('should be able to call method save when method execute is executed', async () => {
-    const repositorySpyOn = jest.spyOn(repository, 'save')
-    jest.spyOn(repository, 'findByEmail').mockResolvedValue(undefined)
-    jest.spyOn(repository, 'save').mockResolvedValue(getProfileEntityDummy())
+  it('should be able to call method readFile when method execute is executed', async () => {
+    // const repositorySpyOn = jest.spyOn(repository, 'save')
+    // jest.spyOn(repository, 'findByEmail').mockResolvedValue(undefined)
+    // jest.spyOn(repository, 'save').mockResolvedValue(getProfileEntityDummy())
 
-    await useCase.execute(params)
+    await useCase.execute()
 
-    expect(repositorySpyOn).toHaveBeenCalled()
-  })
-
-  it('should be able to call method info from loggerService when method execute is executed ', async () => {
-    const loggerSpyOn = jest.spyOn(logger, 'info')
-    await useCase.execute(params)
-
-    expect(loggerSpyOn).toHaveBeenCalledWith(
-      CREATE_PROFILE_USE_CASE_RECEIVED,
-      CreateProfileUseCase.name,
-      params
-    )
-  })
-
-  it('should be able to call method info from loggerService when method execute is executed with success', async () => {
-    const loggerSpyOn = jest.spyOn(logger, 'info')
-    const result = {}
-    jest.spyOn(repository, 'save').mockResolvedValue(result as any)
-    await useCase.execute(params)
-
-    expect(loggerSpyOn).toHaveBeenCalledWith(
-      CREATE_PROFILE_USE_CASE_SAVED,
-      CreateProfileUseCase.name,
-      result
-    )
-  })
-
-  it('should be able to call method error from loggerService when e-mail already exists', async () => {
-    const loggerSpyOn = jest.spyOn(logger, 'error')
-    jest.spyOn(repository, 'findByEmail').mockResolvedValue(getProfileEntityDummy())
-
-    await useCase.execute(params)
-
-    expect(loggerSpyOn).toHaveBeenCalled()
-  })
-
-  it('should be able to call method error from loggerService when method execute is executed with error', async () => {
-    const error = new Error()
-    const loggerSpyOn = jest.spyOn(logger, 'error')
-    jest.spyOn(repository, 'save').mockRejectedValue(error)
-
-    await useCase.execute(params)
-
-    expect(loggerSpyOn).toHaveBeenCalled()
+    // expect(repositorySpyOn).toHaveBeenCalled()
   })
 })

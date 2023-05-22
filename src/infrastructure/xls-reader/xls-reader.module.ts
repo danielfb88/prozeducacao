@@ -1,6 +1,6 @@
 import { InfrastructureProviderEnum } from '@/infrastructure/infrastructure.provider.enum'
 import { MainModule } from '@/main/main.module'
-import { getXlsReaderService } from './read-excel-file/factories/xls-reader-service.factory'
+import { getXlsReaderService } from './factories/xls-reader-service.factory'
 
 export class XlsReaderModule extends MainModule {
   static configure (): void {
