@@ -1,6 +1,6 @@
+import { CivilStatusEnum } from '@/shared/enum/civil-status.enum'
 import { GenderEnum } from '@/shared/enum/gender.enum'
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
-import { CivilStatusEnum } from '@/shared/enum/civil-status.enum'
 
 @Entity()
 export class Profile {
@@ -13,7 +13,7 @@ export class Profile {
   @Column({unique: true})
   email: string
 
-  @Column({ name: 'civil_status', type: 'enum', enum: CivilStatusEnum })
+  @Column({ name: 'civil_status' })
   civilStatus: CivilStatusEnum
 
   @Column()
@@ -25,7 +25,7 @@ export class Profile {
   @Column({ name: 'birth_date' })
   birthDate: Date
 
-  @Column({ type: 'enum', enum: GenderEnum })
+  @Column()
   gender: GenderEnum
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

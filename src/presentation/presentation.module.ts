@@ -1,5 +1,6 @@
 import { DomainProviderEnum } from '@/domain/domain.provider.enum'
 import { MainModule } from '@/main/main.module'
+import { CreateProfileFromXlsController } from './controllers/create-profile-from-xls/create-profile-from-xls.controller'
 import { CreateProfileController } from './controllers/create-profile/create-profile.controller'
 import { DeleteProfileByIdController } from './controllers/delete-profile-by-id/delete-profile-by-id.controller'
 import { GetProfileByEmailController } from './controllers/get-profile-by-email/get-profile-by-email.controller'
@@ -60,6 +61,17 @@ export class PresentationModule extends MainModule {
         UpdateProfileController,
         [
           DomainProviderEnum.UPDATE_PROFILE_USE_CASE
+        ]
+      )
+    })
+
+    // CreateProfileFromXls
+    MainModule.addDependency({
+      token: PresentationProviderEnum.CREATE_PROFILE_FROM_XLS_CONTROLLER,
+      dependency: MainModule.useFactory(
+        CreateProfileFromXlsController,
+        [
+          DomainProviderEnum.CREATE_PROFILE_FROM_XLS_USE_CASE
         ]
       )
     })

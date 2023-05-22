@@ -5,22 +5,25 @@ import { IXlsReaderService } from '@/shared/interfaces/xls-reader-service.interf
 import { loggerServiceStub } from '@/tests/utils/stubs/logger-service.stub'
 import { profileRepositoryStub } from '@/tests/utils/stubs/profile-repository.stub'
 import { getXlsReaderService } from '../../../infrastructure/xls-reader/factories/xls-reader-service.factory'
+import { IPlanilhaAlunosService } from '../../interfaces/planila-alunos-service.interface'
 import { CreateProfileFromXlsUseCase } from './create-profile-from-xls.use-case'
+import { PlanilhaAlunosService } from './planilha-alunos.service'
 
 describe('CreateProfileFromXlsUseCase', () => {
   let useCase: IUseCase<any, any>
   let repository: IProfileRepository
   let logger: ILoggerService
   let xlsReaderService: IXlsReaderService
+  let planilhaAlunoService: IPlanilhaAlunosService
 
   beforeEach(() => {
     jest.clearAllMocks()
 
     repository = profileRepositoryStub()
     logger = loggerServiceStub()
-    // xlsReaderService = xlsReaderServiceStub()
     xlsReaderService = getXlsReaderService()
-    useCase = new CreateProfileFromXlsUseCase(logger, xlsReaderService, repository)
+    planilhaAlunoService = new PlanilhaAlunosService()
+    useCase = new CreateProfileFromXlsUseCase(logger, xlsReaderService, planilhaAlunoService, repository)
   })
 
   it('should be definided', () => {

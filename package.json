@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/src/server.js",
-    "start:dev": "yarn build && nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/src/server.js",
+    "start:dev": "yarn build && cp -r ./resources ./dist/ && nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/src/server.js",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "prebuild": "yarn rimraf dist",
     "format": "yarn prettier --write --trailing-comma=none --no-semi --single-quote \"src/**/*.ts\" \"test/**/*.ts\"",

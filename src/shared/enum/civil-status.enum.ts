@@ -1,5 +1,5 @@
 export enum CivilStatusEnum {
-  SOLTEIRO = 'SOLTEIRO',
-  CASADO = 'CASADO',
-  DIVORCIADO = 'DIVORCIADO',
+  SOLTEIRO = 'SOLTEIRO(A)',
+  CASADO = 'CASADO(A)',
+  DIVORCIADO = 'DIVORCIADO(A)',
 }
