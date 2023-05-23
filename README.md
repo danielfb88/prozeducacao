@@ -119,4 +119,51 @@ yarn test:ci
 ```
 ## **Endpoints**
 
-A collection de requisições para ser importada pelo Postman pode ser encontrada no path `public/postman/Testes.postman_collection.json`
+A collection de requisições para ser importada pelo Postman pode ser encontrada no path `public/postman/Testes.postman_collection.json` </br></br>
+
+1. **Criar Profile** </br>
+POST - `http://localhost:8080/api/profile` </br>
+Payload: 
+```
+{
+    "name": "Daniel",
+    "email": "daniel.fb88@gmail.com",
+    "civilStatus": "SOLTEIRO",
+    "cpf": "sdadsad",
+    "rg": "432432432",
+    "birthDate": "08/02/1988",
+    "gender": "MASCULINO"
+}
+```
+</br></br>
+
+2. **Criar Profile carregando os dados do arquivo** `./public/xls/planilha_alunos.xlsx` </br>
+POST - `http://localhost:8080/api/profileFromXls` </br>
+Payload: 
+```
+{ }
+```
+</br></br>
+
+3. **Update Profile** </br>
+PUT - `http://localhost:8080/api/profile?id=d6286c29-1441-4735-9f88-cb6aad102c4b` </br>
+Payload: 
+```
+{
+    "name": "Daniel UPDATED 22222",
+    "civilStatus": "SOLTEIRO",
+    "cpf": "sdadsad",
+    "rg": "432432432",
+    "birthDate": "08/02/1988",
+    "gender": "MASCULINO"
+}
+```
+</br></br>
+
+4. **Get Profile** </br>
+GET - `http://localhost:8080/api/profile?email=daniel.fb88@gmail.com` </br>
+</br></br>
+
+4. **Delete Profile** </br>
+DELETE - `http://localhost:8080/api/profile?id=c0070526-b2e9-425c-b19e-f3ea495fcc02` </br>
+</br></br>
