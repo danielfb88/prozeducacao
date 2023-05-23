@@ -2,9 +2,9 @@ import { Profile } from '@/domain/entities/profile.entity'
 import { IUseCase } from '@/shared/interfaces'
 import { ILoggerService } from '@/shared/interfaces/logger-service.interface'
 import { IProfileRepository } from '@/shared/interfaces/profile-repository.interface'
+import { IPlanilhaAlunosService } from '../../../shared/interfaces/planila-alunos-service.interface'
 import { IXlsReaderService } from '../../../shared/interfaces/xls-reader-service.interface'
 import { EmailInUseError } from '../../errors/email-in-use.error'
-import { IPlanilhaAlunosService } from '../../interfaces/planila-alunos-service.interface'
 
 export const CREATE_PROFILE_FROM_XLS_USE_CASE_RECEIVED =
   'domain.usecase.create-profile-from-xls.received'

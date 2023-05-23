@@ -4,7 +4,7 @@ import path from 'path'
 
 export class XlsReaderService implements IXlsReaderService {
   async readFile (fileName: string): Promise<any> {
-    const result = await xlsx.parse(path.join(__dirname, '/../../../../resources/xls/', fileName))
+    const result = await xlsx.parse(path.join(__dirname, '/../../../../public/xls/', fileName))
     return result
   }
 }
