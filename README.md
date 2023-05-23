@@ -3,7 +3,7 @@
 
 Essa API é um teste para seleção na empresa Proz Educação.
 
-O desafio consiste em criar endpoints de CRUD para o gerenciamento de alunos, sendo que em um destes endpoints os dados serão inseridos através de um arquivo XLSX previamente carregado na pasta `resources/xls`.
+O desafio consiste em criar endpoints de CRUD para o gerenciamento de alunos, sendo que em um destes endpoints os dados serão inseridos através de um arquivo XLSX previamente carregado na pasta `public/xls`.
 
 O projeto segue os princípios SOLID e foi construído sobre o modelo Clean Architecture, utilizando TDD (programação orientada a testes) como metodologia de trabalho e 100% de cobertura de testes unitários com Jest.
 
